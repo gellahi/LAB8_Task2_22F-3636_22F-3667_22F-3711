@@ -6,14 +6,13 @@ public class UI {
     private JTextField display;
 
     public void designUI() {
-
         JFrame frame = new JFrame("Calculator");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(400, 400);
 
         JPanel displayPanel = new JPanel();
-        display = new JTextField(16); // Text field for display
-        display.setEditable(false); // Make it non-editable
+        display = new JTextField(16);
+        display.setEditable(false);
         display.setFont(new Font("Arial", Font.PLAIN, 24));
         displayPanel.add(display);
 
@@ -32,9 +31,22 @@ public class UI {
             button.addActionListener(e -> handleButtonClick(label));
             buttonPanel.add(button);
         }
+
+        JPanel newPanel = new JPanel(new GridLayout(2, 2));
+        JButton button1 = new JButton("Button 1");
+        JButton button2 = new JButton("Button 2");
+        JLabel label = new JLabel("Enter Value:");
+        JTextField textField = new JTextField(10);
+
+        newPanel.add(label);
+        newPanel.add(textField);
+        newPanel.add(button1);
+        newPanel.add(button2);
+
         frame.setLayout(new BorderLayout());
         frame.add(displayPanel, BorderLayout.NORTH);
         frame.add(buttonPanel, BorderLayout.CENTER);
+        frame.add(newPanel, BorderLayout.SOUTH);
         frame.setVisible(true);
     }
 
@@ -49,7 +61,6 @@ public class UI {
     }
 
     public static void main(String[] args) {
-        // Run UI in the Event Dispatch Thread
         SwingUtilities.invokeLater(() -> {
             UI ui = new UI();
             ui.designUI();
